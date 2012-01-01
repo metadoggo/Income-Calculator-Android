@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<taxdata>
+	<default year="2011/12"/>
+	<year label="2012/13">
+		<incometax>
+			<band rate="0" limit="8108" />
+			<band rate="0.2" limit="34370" />
+			<band rate="0.4" limit="115630" />
+			<band rate="0.5" limit="0" />
+		</incometax>
+		<ni>
+			<band rate="0" limit="144" />
+			<band rate="0.12" limit="817" />
+			<band rate="0.02" limit="0" />
+		</ni>
+	</year>
+	<year label="2011/12">
+		<incometax>
+			<band rate="0" limit="7475" />
+			<band rate="0.2" limit="35000" />
+			<band rate="0.4" limit="115000" />
+			<band rate="0.5" limit="0" />
+		</incometax>
+		<ni>
+			<band rate="0" limit="139" />
+			<band rate="0.12" limit="817" />
+			<band rate="0.02" limit="0" />
+		</ni>
+	</year>
+	<year label="2010/11">
+		<incometax>
+			<band rate="0" limit="6475" />
+			<band rate="0.2" limit="37400" />
+			<band rate="0.4" limit="112600" />
+			<band rate="0.5" limit="0" />
+		</incometax>
+		<ni>
+			<band rate="0" limit="110" />
+			<band rate="0.11" limit="844" />
+			<band rate="0.01" limit="0" />
+		</ni>
+	</year>
+	<year label="2009/10">
+		<incometax>
+			<band rate="0" limit="6475" />
+			<band rate="0.2" limit="37400" />
+			<band rate="0.4" limit="0" />
+		</incometax>
+		<ni>
+			<band rate="0" limit="110" />
+			<band rate="0.11" limit="844" />
+			<band rate="0.01" limit="0" />
+		</ni>
+	</year>
+	<year label="2008/9">
+		<incometax>
+			<band rate="0" limit="6035" />
+			<band rate="0.2" limit="34800" />
+			<band rate="0.4" limit="0" />
+		</incometax>
+		<ni>
+			<band rate="0" limit="105" />
+			<band rate="0.11" limit="770" />
+			<band rate="0.01" limit="0" />
+		</ni>
+	</year>
+	<year label="2007/8">
+		<incometax>
+			<band rate="0" limit="5225" />
+			<band rate="0.1" limit="2230" />
+			<band rate="0.22" limit="34600" />
+			<band rate="0.4" limit="0" />
+		</incometax>
+		<ni>
+			<band rate="0" limit="100" />
+			<band rate="0.11" limit="670" />
+			<band rate="0.01" limit="0" />
+		</ni>
+	</year>
+</taxdata>

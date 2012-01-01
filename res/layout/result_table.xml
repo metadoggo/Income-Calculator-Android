@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent" >
+    <TableLayout android:id="@+id/result_table"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+        <TableRow>
+            <TextView android:text=""/>
+            <TextView android:text="@string/annually"/>
+            <TextView android:text="@string/monthly"/>
+            <TextView android:text="@string/weekly"/>
+            <TextView android:text="@string/daily"/>
+            <TextView android:text="@string/hourly"/>
+        </TableRow>
+        <TableRow>
+            <TextView android:text="@string/gross_income"/>
+            <TextView android:id="@+id/annual_gross"/>
+            <TextView android:id="@+id/month_gross"/>
+            <TextView android:id="@+id/week_gross"/>
+            <TextView android:id="@+id/day_gross"/>
+            <TextView android:id="@+id/hour_gross"/>
+        </TableRow>
+        <TableRow>
+            <TextView android:text="@string/income_tax"/>
+            <TextView android:id="@+id/annual_income_tax"/>
+            <TextView android:id="@+id/month_income_tax"/>
+            <TextView android:id="@+id/week_income_tax"/>
+            <TextView android:id="@+id/day_income_tax"/>
+            <TextView android:id="@+id/hour_income_tax"/>
+        </TableRow>
+        <TableRow>
+            <TextView android:text="@string/national_insurance"/>
+            <TextView android:id="@+id/annual_ni"/>
+            <TextView android:id="@+id/month_ni"/>
+            <TextView android:id="@+id/week_ni"/>
+            <TextView android:id="@+id/day_ni"/>
+            <TextView android:id="@+id/hour_ni"/>
+        </TableRow>
+        <TableRow>
+            <TextView android:text="@string/student_loan"/>
+            <TextView android:id="@+id/annual_student_loan"/>
+            <TextView android:id="@+id/month_student_loan"/>
+            <TextView android:id="@+id/week_student_loan"/>
+            <TextView android:id="@+id/day_student_loan"/>
+            <TextView android:id="@+id/hour_student_loan"/>
+        </TableRow>
+        <TableRow>
+            <TextView android:text="@string/total_deductions"/>
+            <TextView android:id="@+id/annual_deductions"/>
+            <TextView android:id="@+id/month_deductions"/>
+            <TextView android:id="@+id/week_deductions"/>
+            <TextView android:id="@+id/day_deductions"/>
+            <TextView android:id="@+id/hour_deductions"/>
+        </TableRow>
+        <TableRow>
+            <TextView android:text="@string/net_income"/>
+            <TextView android:id="@+id/annual_net"/>
+            <TextView android:id="@+id/month_net"/>
+            <TextView android:id="@+id/week_net"/>
+            <TextView android:id="@+id/day_net"/>
+            <TextView android:id="@+id/hour_net"/>
+        </TableRow>
+    </TableLayout>
+
+</ScrollView>

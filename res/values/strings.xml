@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">IncomeCalculator</string>
+    <string name="payment_term">Payment term</string>
+    <string name="amount">Amount</string>
+    <string name="hours_per_day">Hours per day</string>
+    <string name="days_per_week">Days per week</string>
+    <string name="holidays">Holiday (days)</string>
+    <string name="repay_student_loan">Repay student loan</string>
+    <string name="calculate">Calculate</string>
+    <string name="annually">Annually</string>
+    <string name="monthly">Monthly</string>
+    <string name="weekly">Weekly</string>
+    <string name="daily">Daily</string>
+    <string name="hourly">Hourly</string>
+    <string name="gross_income">Gross income</string>
+    <string name="income_tax">Income tax</string>
+    <string name="national_insurance">National insurance</string>
+    <string name="student_loan">Student loan</string>
+    <string name="total_deductions">Total deductions</string>
+    <string name="net_income">Net income</string>
+	<string-array name="payment_terms">
+	    <item>Annually</item>
+	    <item>Monthly</item>
+	    <item>Weekly</item>
+	    <item>Daily</item>
+	    <item>Hourly</item>
+	</string-array>
+	<string-array name="days_per_week">
+	    <item>1</item>
+	    <item>2</item>
+	    <item>3</item>
+	    <item>4</item>
+	    <item>5</item>
+	    <item>6</item>
+	    <item>7</item>
+	</string-array>
+</resources>
