@@ -31,7 +31,8 @@
             android:id="@+id/amountInput"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:inputType="numberDecimal" />
+            android:inputType="numberDecimal"
+            android:text="300" />
 
         <TextView
             android:layout_width="wrap_content"
@@ -62,8 +63,8 @@
             android:text="@string/holidays"
             android:textAppearance="?android:attr/textAppearanceMedium" />
 
-        <EditText
-            android:id="@+id/holidaysInput"
+        <EditText android:id="@+id/holidaysInput"
+            android:text="0"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:inputType="numberDecimal" />

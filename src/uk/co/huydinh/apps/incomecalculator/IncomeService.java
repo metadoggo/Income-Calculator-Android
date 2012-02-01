@@ -55,7 +55,7 @@ public class IncomeService {
 		TaxBand currentNiBand;
 		TaxBand nextNiBand;
 		int i = this.taxData.niBands.length;
-		while (i-- > 0) {
+		while (i-- > 1) {
 			currentNiBand = this.taxData.niBands[i];
 			nextNiBand = this.taxData.niBands[i - 1];
 			if (remainingIncome > nextNiBand.limit) {
