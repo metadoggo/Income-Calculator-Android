@@ -10,14 +10,13 @@ import org.xmlpull.v1.XmlPullParserException;
 
 import android.app.TabActivity;
 import android.content.Context;
+import android.content.res.Resources;
 import android.content.res.XmlResourceParser;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup.LayoutParams;
-import android.widget.LinearLayout;
 import android.widget.TabHost;
 import android.widget.TabHost.TabSpec;
 import android.widget.TableLayout;
@@ -38,7 +37,6 @@ public class ResultActivity extends TabActivity {
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
-		// TODO Auto-generated method stub
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.result);
 		
@@ -76,13 +74,11 @@ public class ResultActivity extends TabActivity {
 			p.close();
 		}
 		
-		
-		
-		// TODO: Er...
 		Bundle extras = getIntent().getExtras();
 		if (extras != null) {
 			tabHost = getTabHost();
 			
+			// Retrieves data from extras bundle
 			String paymentTerm = extras.getString(PAYMENT_TERM);
 			float amount = extras.getFloat(AMOUNT);
 			int daysPerWeek = extras.getInt(DAYS_PER_WEEK);
@@ -90,50 +86,80 @@ public class ResultActivity extends TabActivity {
 			float holidays = extras.getFloat(HOURS_PER_DAY);
 			boolean repayStudentLoan = extras.getBoolean(REPAY_STUDENT_LOAN);
 			
-			final String[] paymentTerms = getResources().getStringArray(R.array.payment_terms);
+			// prepares resources
+			final Resources resources = getResources();
+			final String[] paymentTerms = resources.getStringArray(R.array.payment_terms);
 			
+			// calculate time worked
+			final float workingDaysPerYear = (daysPerWeek * IncomeService.WEEKS_PER_YEAR) - holidays;
+			final float workingHoursPerYear = workingDaysPerYear * hoursPerDay;
+			
+			// calculate annual salary
 			float annualSalary;
-			
 			if (paymentTerm.equals(paymentTerms[1])) {
 				annualSalary = amount * IncomeService.MONTHS_PER_YEAR;
 			} else  if (paymentTerm.equals(paymentTerms[2])) {
 				annualSalary = amount * IncomeService.WEEKS_PER_YEAR;
 			} else if (paymentTerm.equals(paymentTerms[3])) {
-				annualSalary = amount * IncomeService.DAYS_PER_YEAR;
+				annualSalary = amount * workingDaysPerYear;
 			} else if (paymentTerm.equals(paymentTerms[4])) {
-				annualSalary = amount * IncomeService.DAYS_PER_YEAR * hoursPerDay;
+				annualSalary = amount * workingHoursPerYear;
 			} else {
 				annualSalary = amount;
 			}
 			
-			final float workingDaysPerYear = (daysPerWeek * IncomeService.WEEKS_PER_YEAR) - holidays;
-			final float workingHoursPerYear = workingDaysPerYear * hoursPerDay;
-			
+			// calculate taxes
 			for (TaxData td : this.taxDatas) {
+				// feed data into the calculator
 				final IncomeService is = new IncomeService(td, annualSalary, repayStudentLoan);
 				
+				// create a tab for each tax data (each tax data is associated with a period - usually a year)
 				TabSpec tab = tabHost.newTabSpec(td.label).setIndicator(td.label).setContent(new TabHost.TabContentFactory() {
 					
-					private NumberFormat formatter = new DecimalFormat("#0.00");
+					// retrieves the formatting for currency
+					private NumberFormat formatter = new DecimalFormat(resources.getString(R.string.currency_format));
 					
-					private TextView createTextView(String label) {
+					/**
+					 * Creates a TextView to be the table cell
+					 * @param label Text for the cell
+					 * @return TextView
+					 */
+					private TextView createTableCell(String label) {
 						TextView tv = new TextView(ResultActivity.this);
 						tv.setText(label);
 						return tv;
 					}
 					
+					/**
+					 * Cerates a TextView to be the table cell with text alignment
+					 * @param label Text for the cell
+					 * @param gravity Text alignment gravity
+					 * @return TextView
+					 */
 					private TextView createTextView(String label, int gravity) {
-						TextView tv = createTextView(label);
+						TextView tv = createTableCell(label);
 						tv.setGravity(gravity);
 						return tv;
 					}
+					
+					/**
+					 * Creates a TextView to be the table cell for a monetary value - the text is right aligned
+					 * @param amount Number to display
+					 * @return TextView
+					 */
 					private TextView createTextView(float amount) {
 						return this.createTextView(formatter.format(amount), Gravity.RIGHT);
 					}
 					
+					/**
+					 * Creates a TableRow with predetermined number of columns
+					 * @param label Heading columm's label
+					 * @param amount Annual amount
+					 * @return TableRow
+					 */
 					private TableRow createRow(String label, float amount) {
 						TableRow row = new TableRow(ResultActivity.this);
-						row.addView(createTextView(label));
+						row.addView(createTableCell(label));
 						row.addView(createTextView(amount));
 						row.addView(createTextView(amount / IncomeService.MONTHS_PER_YEAR));
 						row.addView(createTextView(amount / IncomeService.WEEKS_PER_YEAR));
@@ -142,30 +168,38 @@ public class ResultActivity extends TabActivity {
 						return row;
 					}
 					
+					/**
+					 * Create the tab's content
+					 * 
+					 * @param tag Tab's label
+					 * @return View
+					 */
 					public View createTabContent(String tag) {
+						// Inflates the view
 						LayoutInflater inflater = (LayoutInflater) getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 						View view = inflater.inflate(R.layout.result_table, null);
 						
+						// Find the TableLayout
 						TableLayout table = (TableLayout) view.findViewById(R.id.result_table);
 						table.setStretchAllColumns(true);
 						
+						// Create a header row
 						TableRow row = new TableRow(ResultActivity.this);
-						row.addView(createTextView(""));
-						row.addView(createTextView(paymentTerms[0], Gravity.RIGHT));
-						row.addView(createTextView(paymentTerms[1], Gravity.RIGHT));
-						row.addView(createTextView(paymentTerms[2], Gravity.RIGHT));
-						row.addView(createTextView(paymentTerms[3], Gravity.RIGHT));
-						row.addView(createTextView(paymentTerms[4], Gravity.RIGHT));
+						row.addView(createTableCell(""));
+						for (int i=0, j=paymentTerms.length; i < j; i++) {
+							row.addView(createTextView(paymentTerms[i], Gravity.RIGHT));
+						}
 						table.addView(row);
 						
-						table.addView(createRow("Gross salary", is.grossSalary));
-						table.addView(createRow("Income tax", is.getIncomeTax()));
-						table.addView(createRow("National insurance", is.getNationalInsurance()));
+						// Create the rest of the rows
+						table.addView(createRow(resources.getString(R.string.gross_income), is.grossSalary));
+						table.addView(createRow(resources.getString(R.string.income_tax), is.getIncomeTax()));
+						table.addView(createRow(resources.getString(R.string.national_insurance), is.getNationalInsurance()));
 						if (is.repayStudentLoan) {
-							table.addView(createRow("Student loan", is.getStudentLoan()));
+							table.addView(createRow(resources.getString(R.string.student_loan), is.getStudentLoan()));
 						}
-						table.addView(createRow("Total deductions", is.getTotalDeductions()));
-						table.addView(createRow("Net salary", is.getNetSalary()));
+						table.addView(createRow(resources.getString(R.string.total_deductions), is.getTotalDeductions()));
+						table.addView(createRow(resources.getString(R.string.net_income), is.getNetSalary()));
 						
 						return view;
 					}
@@ -176,6 +210,14 @@ public class ResultActivity extends TabActivity {
 
     }
     
+	/**
+	 * Parses tax data from xml resource
+	 * 
+	 * @param p An XmlResourceParser object
+	 * @return TaxData object
+	 * @throws XmlPullParserException
+	 * @throws IOException
+	 */
     private TaxData parseTaxData(XmlResourceParser p) throws XmlPullParserException, IOException {
     	int depth = p.getDepth();
     	String label = p.getAttributeValue(null, "label");
@@ -199,6 +241,14 @@ public class ResultActivity extends TabActivity {
 		return new TaxData(label, it, ni);
     }
     
+    /**
+     * Parses tax band datas from xml resource (to be stored in the TaxData object)
+     * 
+     * @param p An XmlResourceParser object
+     * @return All TaxBands in an ArrayList
+     * @throws XmlPullParserException
+     * @throws IOException
+     */
     private ArrayList<TaxBand> parseTaxBands(XmlResourceParser p) throws XmlPullParserException, IOException {
     	ArrayList<TaxBand> taxBands = new ArrayList<TaxBand>();
     	int depth = p.getDepth();
@@ -210,6 +260,14 @@ public class ResultActivity extends TabActivity {
     	return taxBands;
     }
     
+    /**
+     * Parses a single tax band data from xml resource (to be stored in an ArrayList)
+     * 
+     * @param p An XmlResourceParser object
+     * @return TaxBand object
+     * @throws XmlPullParserException
+     * @throws IOException
+     */
     private TaxBand parseTaxBand(XmlResourceParser p) throws XmlPullParserException, IOException {
     	// Parse a float (or an int as a float)
     	float rate;

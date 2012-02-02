@@ -20,6 +20,7 @@
     <string name="student_loan">Student loan</string>
     <string name="total_deductions">Total deductions</string>
     <string name="net_income">Net income</string>
+    <string name="currency_format">#,###,###,##0.00</string>
 	<string-array name="payment_terms">
 	    <item>Annually</item>
 	    <item>Monthly</item>
