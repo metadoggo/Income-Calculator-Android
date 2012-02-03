@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">收入計算器</string>
+    <string name="exit">關閉</string>
+    <string name="about">關於</string>
+    <string name="settings">選項</string>
+    <string name="payment_term">支付條規</string>
+    <string name="amount">數目</string>
+    <string name="hours_per_day">每天工作時間(小時)</string>
+    <string name="days_per_week">每周工作時間(天)</string>
+    <string name="holidays">假期(天)</string>
+    <string name="repay_student_loan">學生貸款</string>
+    <string name="calculate">計算</string>
+    <string name="gross_income">總收入</string>
+    <string name="income_tax">入息稅</string>
+    <string name="national_insurance">国民保险(National Insurance)</string>
+    <string name="student_loan">學生貸款</string>
+    <string name="total_deductions">總扣除額</string>
+    <string name="net_income">淨收入</string>
+    <string name="currency_format">#,###,###,##0.00</string>
+	<string-array name="payment_terms">
+	    <item>每年</item>
+	    <item>每月</item>
+	    <item>每星期</item>
+	    <item>每日</item>
+	    <item>每小時</item>
+	</string-array>
+	<string-array name="days_per_week">
+	    <item>1</item>
+	    <item>2</item>
+	    <item>3</item>
+	    <item>4</item>
+	    <item>5</item>
+	    <item>6</item>
+	    <item>7</item>
+	</string-array>
+</resources>
