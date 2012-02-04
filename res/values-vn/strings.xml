@@ -1,31 +1,26 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">IncomeCalculator</string>
-    <string name="payment_term">Payment term</string>
-    <string name="amount">Amount</string>
-    <string name="hours_per_day">Hours per day</string>
-    <string name="days_per_week">Days per week</string>
-    <string name="holidays">Holiday (days)</string>
-    <string name="repay_student_loan">Repay student loan</string>
-    <string name="calculate">Calculate</string>
-    <string name="annually">Annually</string>
-    <string name="monthly">Monthly</string>
-    <string name="weekly">Weekly</string>
-    <string name="daily">Daily</string>
-    <string name="hourly">Hourly</string>
-    <string name="gross_income">Gross income</string>
-    <string name="income_tax">Income tax</string>
-    <string name="national_insurance">National insurance</string>
-    <string name="student_loan">Student loan</string>
-    <string name="total_deductions">Total deductions</string>
-    <string name="net_income">Net income</string>
+    <string name="app_name">Tính thu nhập Anh Quốc</string>
+    <string name="payment_term">Thời hạn thanh toán</string>
+    <string name="amount">Số tiền</string>
+    <string name="hours_per_day">Giờ mỗi ngày</string>
+    <string name="days_per_week">Ngày mỗi tuần</string>
+    <string name="holidays">Ngày nghỉ</string>
+    <string name="repay_student_loan">Trả tiền vay của học sinh</string>
+    <string name="calculate">Tính</string>
+    <string name="gross_income">Tổng thu nhập</string>
+    <string name="income_tax">Thuế thu nhập</string>
+    <string name="national_insurance">Quốc gia bảo hiểm</string>
+    <string name="student_loan">Sinh viên vay</string>
+    <string name="total_deductions">Tổng số các khoản khấu trừ</string>
+    <string name="net_income">Thu nhập ròng</string>
     <string name="currency_format">#,###,###,##0.00</string>
 	<string-array name="payment_terms">
-	    <item>Annually</item>
-	    <item>Monthly</item>
-	    <item>Weekly</item>
-	    <item>Daily</item>
-	    <item>Hourly</item>
+	    <item>Hàng năm</item>
+	    <item>Hàng tháng</item>
+	    <item>Hàng tuần</item>
+	    <item>Hàng ngày</item>
+	    <item>Hàng giờ</item>
 	</string-array>
 	<string-array name="days_per_week">
 	    <item>1</item>
@@ -36,4 +31,6 @@
 	    <item>6</item>
 	    <item>7</item>
 	</string-array>
+	<string name="language">Thay đổi ngôn ngữ</string>
+	<string name="language_summary">Thay đổi ngôn ngữ giao diện</string>
 </resources>
