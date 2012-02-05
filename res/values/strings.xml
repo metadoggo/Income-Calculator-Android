@@ -18,6 +18,8 @@
     <string name="total_deductions">Total deductions</string>
     <string name="net_income">Net income</string>
     <string name="currency_format">#,###,###,##0.00</string>
+    <string name="invalid_amount">Please enter the amount you earn</string>
+    <string name="invalid_holiday">No holiday? Poor you!</string>
 	<string-array name="payment_terms">
 	    <item>Annually</item>
 	    <item>Monthly</item>

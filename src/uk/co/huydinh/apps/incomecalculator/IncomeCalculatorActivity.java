@@ -20,6 +20,7 @@ import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TimePicker;
+import android.widget.Toast;
 
 public class IncomeCalculatorActivity extends Activity implements
 		OnClickListener {
@@ -61,7 +62,6 @@ public class IncomeCalculatorActivity extends Activity implements
 		setContentView(R.layout.main);
 
 		paymentTermPicker = (Spinner) findViewById(R.id.paymentTermSpinner);
-		paymentTermPicker.setSelection(3);
 
 		amountInput = (EditText) findViewById(R.id.amountInput);
 
@@ -107,6 +107,7 @@ public class IncomeCalculatorActivity extends Activity implements
 			startActivity(new Intent(this, AppPreferences.class));
 			return true;
 		case R.id.exit:
+			finish();
 			return true;
 		default:
 			return super.onOptionsItemSelected(item);
@@ -114,11 +115,24 @@ public class IncomeCalculatorActivity extends Activity implements
 	}
 
 	public void onClick(View v) {
+		String amount = amountInput.getText().toString();
+		String holiday = holidaysInput.getText().toString();
+		if (amount.length() == 0) {
+			Toast.makeText(this, getBaseContext().getResources().getText(R.string.invalid_amount), Toast.LENGTH_SHORT).show();
+			amountInput.requestFocus();
+			return;
+		}
+		if (holiday.length() == 0) {
+			Toast.makeText(this, getBaseContext().getResources().getText(R.string.invalid_holiday), Toast.LENGTH_LONG).show();
+			holiday = "0";
+			holidaysInput.setText(holiday);
+		}
+		
 		Intent intent = new Intent(this, ResultActivity.class);
 		intent.putExtra(ResultActivity.PAYMENT_TERM, paymentTermPicker
 				.getSelectedItem().toString());
 		intent.putExtra(ResultActivity.AMOUNT,
-				Float.parseFloat(amountInput.getText().toString()));
+				Float.parseFloat(amount));
 		intent.putExtra(ResultActivity.DAYS_PER_WEEK, Integer
 				.parseInt(daysPerWeekPicker.getSelectedItem().toString()));
 		intent.putExtra(
@@ -126,7 +140,7 @@ public class IncomeCalculatorActivity extends Activity implements
 				hoursPerDayTimePicker.getCurrentHour()
 						+ (hoursPerDayTimePicker.getCurrentMinute() / 60.0f));
 		intent.putExtra(ResultActivity.HOLIDAYS,
-				Float.parseFloat(holidaysInput.getText().toString()));
+				Float.parseFloat(holiday));
 		intent.putExtra(ResultActivity.REPAY_STUDENT_LOAN,
 				repayStudentLoanCheckBox.isChecked());
 		startActivity(intent);
