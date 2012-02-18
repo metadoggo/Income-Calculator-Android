@@ -107,7 +107,7 @@ public class ResultActivity extends TabActivity {
 			float amount = extras.getFloat(AMOUNT);
 			int daysPerWeek = extras.getInt(DAYS_PER_WEEK);
 			float hoursPerDay = extras.getFloat(HOURS_PER_DAY);
-			float holidays = extras.getFloat(HOURS_PER_DAY);
+			float holidays = extras.getFloat(HOLIDAYS);
 			boolean repayStudentLoan = extras.getBoolean(REPAY_STUDENT_LOAN);
 
 			// prepares resources
